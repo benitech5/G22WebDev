@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practitioner Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Signup.css">
+  </head>
+
+  <body>
+    <img src="HealthLinka Logo.png" alt="HealthLinka Logo">
+    <h4 class="HealthLinka">HealthLinka</h4>
+    <h5>PRACTITIONER PORTAL</h5>
+    <h3>CREATE ACCOUNT</h3>
+
+    <div class="Contain">
+      <form id="signupForm">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+        <span class="error" id="usernameError"></span>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <span class="error" id="passwordError"></span>
+
+        <label for="reenterPassword">Re-enter Password</label>
+        <input type="password" id="reenterPassword" name="reenter_password" placeholder="Re-enter your password">
+        <span class="error" id="reenterPasswordError"></span>
+
+        <span class="error" id="generalError"></span>
+
+        <button type="submit" id="signupBtn">Provide Certification &nbsp; →</button>
+
+      </form>
+
+      <hr><br>
+      <p>Already have an account? <a href="Login.html" class="Account">Login here</a></p>
+    </div>
+
+    <script src="Signup.js"></script>
+  </body>
+</html>
+

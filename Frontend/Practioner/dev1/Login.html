@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practitioner Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Login.css">
+  </head>
+
+  <body>
+    <img src="HealthLinka Logo.png" alt="HealthLinka Logo">
+    <h4 class="HealthLinka">HealthLinka</h4>
+    <h5>PRACTITIONER PORTAL</h5>
+    <h3>Practitioner Login</h3>
+
+    <div class="Contain">
+      <form id="loginForm">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+
+        <span class="error" id="usernameError"></span>
+      
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <span class="error" id="passwordError"></span>
+
+        <span class="error" id="generalError"></span>
+
+      
+        <button type="submit" id="loginBtn">→ &nbsp; Login</button>
+
+      </form>
+
+      <hr>
+      <p>Don't have an account? <a href="Signup.html" class="Account">Create an Account</a></p>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 HealthLinka Inc. All rights reserved.</p>
+      <p>Privacy Policy &nbsp; Terms of Service &nbsp; Support</p>
+    </footer>
+
+    <script src="Login.js"></script>
+  </body>
+</html>
