@@ -177,7 +177,7 @@ export default function LandingPage() {
                 <div style={{ borderTop: '1px solid var(--border)', marginTop: 20, paddingTop: 16 }}>
                   <button
                     onClick={() => navigate(portal.path)}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--green-primary)', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', gap: 6, padding: 0, fontFamily: 'var(--font)' }}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--green-primary)', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', gap: 6, padding: 0, fontFamily: 'var(--font)', textShadow: '0 2px 2px rgba(0,0,0,0.5)'}}
                   >
                     Enter Portal <ArrowRight size={14} />
                   </button>
