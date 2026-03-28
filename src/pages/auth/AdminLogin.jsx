@@ -15,6 +15,7 @@ export default function AdminLogin() {
       <div style={{ background: '#fff', borderBottom: '1px solid var(--border)', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div className="hl-logo">
           <Logo className="hl-logo-icon" />
+          <span className="hl-logo-text">HealthLinka</span>
           <span className="hl-logo-text" style={{ color: 'var(--green-primary)' }}>Super Admin</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--green-primary)', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
@@ -27,7 +28,7 @@ export default function AdminLogin() {
           {/* Hero */}
           <div style={{ position: 'relative' }}>
             <img
-              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80&sat=-50"
+              src="https://tse2.mm.bing.net/th/id/OIP.x-ELeinJFNf_a8tLkEl_NQHaDT?rs=1&pid=ImgDetMain&o=7&rm=3"
               alt="Hospital"
               style={{ width: '100%', height: 160, objectFit: 'cover', display: 'block', filter: 'brightness(0.5)' }}
             />
@@ -63,7 +64,7 @@ export default function AdminLogin() {
                 action={() => navigate('/admin/dashboard')}
                 innerText="Login to Dashboard"
                 variant="lg"
-                icon={LogIn}
+                iconRight={LogIn}
               />
             </div>
 
