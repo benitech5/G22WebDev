@@ -10,80 +10,211 @@ export default function HospitalLogin() {
   const [showPw, setShowPw] = useState(false)
 
   return (
-    <div className="auth-page" style={{ background: 'var(--bg-page)' }}>
-      {/* Header */}
-      <div style={{ padding: '14px 24px', background: '#fff', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center' }}>
+    <div className="auth-page">
+
+      {/* HEADER */}
+      <div style={{
+        padding: '14px 24px',
+        background: '#fff',
+        borderBottom: '1px solid var(--border)',
+        display: 'flex',
+        alignItems: 'center'
+      }}>
         <div className="hl-logo">
           <Logo className="hl-logo-icon" />
           <span className="hl-logo-text">HealthLinka</span>
         </div>
       </div>
 
+      {/* TITLE */}
+      <div style={{ paddingTop: 30, textAlign: 'center' }}>
+        <div style={{
+          fontSize: 11,
+          fontWeight: 700,
+          color: 'var(--green-primary)',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          marginBottom: 6
+        }}>
+          Hospital Portal
+        </div>
+
+        <h1 style={{
+          fontSize: 30,
+          fontWeight: 800,
+          marginBottom: 6
+        }}>
+          Welcome Back
+        </h1>
+
+        <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
+          Access your administrative healthcare dashboard
+        </p>
+      </div>
+
+      {/* CARD */}
       <div className="auth-center">
-        <div className="auth-card" style={{ maxWidth: 440, padding: 0, overflow: 'hidden' }}>
-          <div style={{ padding: '28px 28px 0', textAlign: 'center' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--green-primary)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Hospital Portal</div>
-            <h1 style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>Welcome Back</h1>
-            <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>Access your administrative healthcare dashboard</p>
-          </div>
+        <div className="auth-card" style={{
+          maxWidth: 420,
+          padding: 0,
+          overflow: 'hidden',
+          borderRadius: '16px'
+        }}>
 
-          <div style={{ position: 'relative', margin: '20px 28px 0' }}>
+          {/* IMAGE */}
+          <div style={{ position: 'relative' }}>
             <img
-              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80"
+              src="https://img.freepik.com/premium-photo/hall-deep-empty-hospital-corridor_839035-462243.jpg"
               alt="Hospital"
-              style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 'var(--radius-md)', display: 'block' }}
+              style={{
+                width: '100%',
+                height: 160,
+                objectFit: 'cover'
+              }}
             />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(4px)', borderRadius: '0 0 var(--radius-md) var(--radius-md)', padding: '8px 16px' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>Hospital Email or Phone</div>
+
+            {/* FADE OVERLAY */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: `linear-gradient(to bottom,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.2) 30%,rgba(255,255,255,0.6) 65%,rgba(255,255,255,0.98) 100%)`
+            }} />
+
+            {/* LABEL */}
+            <div style={{
+              position: 'absolute',
+              bottom: 10,
+              left: 20,
+              fontSize: 13,
+              fontWeight: 600
+            }}>
+              Hospital Email or Phone
             </div>
           </div>
 
-          <div style={{ padding: '0 28px 28px' }}>
-            <div className="input-wrap" style={{ marginBottom: 16, marginTop: 8 }}>
+          {/* FORM */}
+          <div style={{ padding: '20px 24px 26px' }}>
+
+            {/* EMAIL */}
+            <div className="input-wrap" style={{ marginBottom: 16 }}>
               <Mail size={16} className="input-icon" />
-              <input type="email" placeholder="administrator@hospital.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
+              <input
+                type="email"
+                placeholder="administrator@hospital.com"
+                value={form.email}
+                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+              />
             </div>
 
-            <div className="form-group" style={{ marginBottom: 8 }}>
-              <label className="form-label">Password</label>
+            {/* PASSWORD */}
+            <div style={{ marginBottom: 6 }}>
+              <div style={{
+                fontSize: 13,
+                fontWeight: 600,
+                marginBottom: 6
+              }}>
+                Password
+              </div>
+
               <div className="input-wrap">
                 <Lock size={16} className="input-icon" />
-                <input type={showPw ? 'text' : 'password'} placeholder="••••••••" value={form.password} onChange={e => setForm(f => ({ ...f, password: e.target.value }))} />
-                <button type="button" onClick={() => setShowPw(s => !s)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}>
+
+                <input
+                  type={showPw ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={form.password}
+                  onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPw(s => !s)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: 'var(--text-muted)'
+                  }}
+                >
                   {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
 
-            <div style={{ textAlign: 'right', marginBottom: 20 }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--orange)', cursor: 'pointer' }}>FORGOT PASSWORD?</span>
+            {/* FORGOT */}
+            <div style={{ textAlign: 'right', marginBottom: 18 }}>
+              <span style={{
+                fontSize: 12,
+                fontWeight: 700,
+                color: 'var(--orange)',
+                cursor: 'pointer'
+              }}>
+                FORGOT PASSWORD?
+              </span>
             </div>
 
-            <Button action={() => navigate('/hospital/dashboard')} innerText="Login to Dashboard" variant="lg" icon={LogIn} />
+            {/* BUTTON */}
+            <Button
+              action={() => navigate('/hospital/dashboard')}
+              innerText="Login to Dashboard"
+              variant="lg"
+              icon={LogIn}
+            />
 
             <div className="divider" />
 
-            <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+            {/* TERMS */}
+            <p style={{
+              textAlign: 'center',
+              fontSize: 12,
+              color: 'var(--text-secondary)',
+              lineHeight: 1.6
+            }}>
               By logging in, you agree to HealthLinka's{' '}
-              <span style={{ color: 'var(--green-primary)', cursor: 'pointer' }}>Terms of Service</span>
-              {' '}and{' '}
-              <span style={{ color: 'var(--green-primary)', cursor: 'pointer' }}>Privacy Policy</span>
+              <span style={{ color: 'var(--green-primary)', cursor: 'pointer' }}>
+                Terms of Service
+              </span>{' '}
+              and{' '}
+              <span style={{ color: 'var(--green-primary)', cursor: 'pointer' }}>
+                Privacy Policy
+              </span>
             </p>
+
           </div>
         </div>
       </div>
-
-      <div style={{ textAlign: 'center', paddingBottom: 24, display: 'flex', justifyContent: 'center', gap: 28, flexWrap: 'wrap', padding: '0 16px 24px' }}>
+  
+      <div style={{
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 24,
+        flexWrap: 'wrap',
+        marginBottom: 16,
+      }}>
         {['HIPAA COMPLIANT', 'SSL SECURED'].map(t => (
-          <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-muted)', fontSize: 12, fontWeight: 600 }}>
-            <ShieldCheck size={14} />{t}
+          <div key={t} style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            fontSize: 12,
+            color: 'var(--text-muted)',
+            fontWeight: 600
+          }}>
+            <ShieldCheck size={14} /> {t}
           </div>
         ))}
       </div>
+      <footer style={{ background: '#fff', borderTop: '1px solid var(--border)', padding: '28px 24px' }}>
+        <p style={{
+          textAlign: 'center',
+          fontSize: 12,
+          color: 'var(--text-muted)',
+        }}>
+          © 2024 HealthLinka Enterprise Solutions. All rights reserved.
+        </p>
+      </footer>
 
-      <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--text-muted)', paddingBottom: 20 }}>
-        © 2024 HealthLinka Enterprise Solutions. All rights reserved.
-      </p>
     </div>
   )
 }
