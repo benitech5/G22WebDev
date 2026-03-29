@@ -6,6 +6,7 @@
 
   var PATHS = {
     login: "Login.html",
+    landing: "../Landingpage.html",
     dashboard: "dashboard.html",
     contracts: "contracts.html",
     payments: "payments.html",
@@ -32,7 +33,7 @@
       localStorage.removeItem(KEYS.loggedIn);
       localStorage.removeItem(KEYS.adminName);
     } catch (e) {}
-    window.location.href = PATHS.login;
+    window.location.href = PATHS.landing;
   }
 
   function requireAuth() {

@@ -43,12 +43,26 @@
     showToast("Draft discarded.");
   });
 
-  document.getElementById("btnEmergency").addEventListener("click", function () {
-    showToast("Emergency alert workflow would open (demo).");
+  var emergencyModal = document.getElementById("modalEmergency");
+  function openEmergency() {
+    emergencyModal.classList.add("open");
+  }
+  function closeEmergency() {
+    emergencyModal.classList.remove("open");
+  }
+
+  document.getElementById("btnEmergency").addEventListener("click", openEmergency);
+  document.getElementById("btnPostAlert").addEventListener("click", openEmergency);
+  document.getElementById("closeEmergency").addEventListener("click", closeEmergency);
+  document.getElementById("cancelEmergency").addEventListener("click", closeEmergency);
+  emergencyModal.addEventListener("click", function (e) {
+    if (e.target === emergencyModal) closeEmergency();
   });
 
-  document.getElementById("btnPostAlert").addEventListener("click", function () {
-    showToast("Facility-wide emergency alert posted (demo).");
+  document.getElementById("formEmergency").addEventListener("submit", function (e) {
+    e.preventDefault();
+    closeEmergency();
+    showToast("Emergency alert posted to your practitioner roster.");
   });
 
   document.getElementById("btnBell").addEventListener("click", function () {
@@ -56,7 +70,7 @@
   });
 
   document.getElementById("btnManagePrac").addEventListener("click", function () {
-    showToast("Practitioner roster (demo).");
+    window.location.href = "manage-practitioners.html";
   });
 
   document.getElementById("globalSearch").addEventListener("keydown", function (e) {

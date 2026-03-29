@@ -200,6 +200,62 @@
     </div>
   </div>
 
+  <div class="modal-h-overlay" id="modalEmergency" role="dialog" aria-modal="true">
+    <div class="modal-create modal-emergency">
+      <button type="button" class="modal-h-close" id="closeEmergency" aria-label="Close">×</button>
+      <div class="modal-create-head modal-emergency-head">
+        <div class="mh-ico" aria-hidden="true">!</div>
+        <h2>Post Emergency Alert</h2>
+        <p>Notify practitioners about a high-impact incident or patient surge affecting the hospital.</p>
+      </div>
+      <div class="modal-create-body">
+        <form id="formEmergency">
+          <div class="mc-grid">
+            <div class="mc-field full">
+              <label for="alertTitle">Alert Title</label>
+              <input type="text" id="alertTitle" placeholder="e.g. Disease outbreak in ER" required />
+            </div>
+            <div class="mc-field">
+              <label for="alertType">Incident Type</label>
+              <select id="alertType">
+                <option>Disease Outbreak</option>
+                <option>Accident</option>
+                <option>Flood</option>
+                <option>Equipment Failure</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mc-field">
+              <label for="severity">Urgency Level</label>
+              <select id="severity">
+                <option>Critical</option>
+                <option>High</option>
+                <option>Moderate</option>
+                <option>Low</option>
+              </select>
+            </div>
+            <div class="mc-field full">
+              <label for="affectedArea">Affected Department</label>
+              <input type="text" id="affectedArea" placeholder="e.g. Emergency Room, ICU" />
+            </div>
+            <div class="mc-field full">
+              <label for="expectedPatients">Estimated Surge</label>
+              <input type="text" id="expectedPatients" placeholder="e.g. +18 patients in 2 hours" />
+            </div>
+            <div class="mc-field full">
+              <label for="alertDetails">Situation Summary</label>
+              <textarea id="alertDetails" placeholder="Describe why the alert was issued and what support is needed..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-create-foot">
+            <button type="button" class="link-discard" id="cancelEmergency">Cancel</button>
+            <button type="submit" class="btn-h-danger">Send Emergency Alert</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="toast-h" id="toastH"></div>
 
   <script src="js/hospital-session.js"></script>

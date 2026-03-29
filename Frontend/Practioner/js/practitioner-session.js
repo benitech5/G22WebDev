@@ -11,6 +11,7 @@
 
   var PATHS = {
     login: "../PractionerLogin/Login.html",
+    landing: "../../Landingpage.html",
     dashboard: "dashboard.html",
     contracts: "my-contracts.html",
     hospitals: "hospital-search.html",
@@ -44,7 +45,7 @@
       localStorage.removeItem(KEYS.username);
       localStorage.removeItem(KEYS.onboarding);
     } catch (e) {}
-    window.location.href = PATHS.login;
+    window.location.href = PATHS.landing;
   }
 
   /** Call from Dashboard/* pages (same folder as dashboard.html). */

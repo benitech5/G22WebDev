@@ -312,18 +312,28 @@ body.hospital-portal {
 
 .btn-h-danger {
   padding: 10px 16px;
-  background: #fff;
-  color: var(--h-red);
+  background: #111827;
+  color: #fecaca;
   font-weight: 700;
   font-size: 0.85rem;
-  border: 1px solid #fecaca;
+  border: 1px solid #dc2626;
   border-radius: 10px;
   cursor: pointer;
   font-family: inherit;
 }
 
 .btn-h-danger:hover {
-  background: #fef2f2;
+  background: #1f2937;
+}
+
+.modal-emergency .modal-create-head {
+  background: #111827;
+  color: #fff;
+}
+
+.modal-emergency .modal-create-head .mh-ico {
+  background: #dc2626;
+  color: #fff;
 }
 
 .toast-h {
