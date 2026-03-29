@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practitioner Portal – Payments</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+  <!-- ── SIDEBAR  -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="../../SuperAdmin/assets/logo.png" alt="" width="28" height="28"/>
+      Practitioner Portal
+    </div>
+    <nav class="nav">
+      <a class="nav-item" href="../Dashboard/dashboard.html">
+        <img src="assets/icons/dashboard.svg" alt="" width="17" height="17"/>
+        Dashboard
+      </a>
+      <a class="nav-item" href="../Dashboard/my-contracts.html">
+        <img src="assets/icons/contracts.svg" alt="" width="17" height="17"/>
+        Contracts
+      </a>
+      <a class="nav-item active" href="index.html">
+        <img src="assets/icons/payments.svg" alt="" width="17" height="17"/>
+        Payments
+      </a>
+    </nav>
+    <button type="button" class="sidebar-logout" id="btnLogoutPayments">Log out</button>
+    <div class="contract-status">
+      <div class="label">Contract Status</div>
+      <div class="status-badge">
+        <span class="dot green"></span> Currently On-Shift
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN  -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>Practitioner Payments</h1>
+      <div class="topbar-actions">
+        <div class="notif-btn-wrap">
+          <button class="notif-btn" id="notifBtn" title="Notifications" aria-label="Notifications">
+            <img src="assets/icons/bell.svg" alt="Bell" width="17" height="17"/>
+            <span class="notif-badge"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-dropdown-header">Notifications</div>
+            <div class="notif-row">
+              <div class="notif-dot" style="background:var(--green-mid)"></div>
+              <div class="notif-text"><strong>Escrow released</strong> – Perfect Health cardiology shifts paid out.</div>
+            </div>
+            <div class="notif-row">
+              <div class="notif-dot" style="background:var(--blue-accent)"></div>
+              <div class="notif-text"><strong>GH₵ 6,000</strong> funded by Ridge Medical Center.</div>
+            </div>
+            <div class="notif-row">
+              <div class="notif-dot" style="background:#d1d5db"></div>
+              <div class="notif-text">New contract escrow created for General Practice Support.</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" id="withdrawBtn">
+          <img src="assets/icons/withdraw.svg" alt="" width="15" height="15"/>
+          Withdraw Funds
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="left-col">
+
+        <!-- STAT CARDS -->
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Earnings</div>
+              <div class="stat-value">GH₵ <span class="counting" data-target="45200">0</span><span class="stat-decimal">.00</span></div>
+              <div class="stat-sub up">↑ +12% from last month</div>
+            </div>
+            <div class="stat-icon green">
+              <img src="assets/icons/earnings.svg" alt="Earnings" width="22" height="22"/>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Funds in Escrow</div>
+              <div class="stat-value">GH₵ <span class="counting" data-target="8400">0</span><span class="stat-decimal">.00</span></div>
+              <div class="stat-sub neutral">Secured &amp; verified</div>
+            </div>
+            <div class="stat-icon blue">
+              <img src="assets/icons/escrow.svg" alt="Escrow" width="22" height="22"/>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Payments Released</div>
+              <div class="stat-value">GH₵ <span class="counting" data-target="36800">0</span><span class="stat-decimal">.00</span></div>
+              <div class="stat-sub neutral">✓ Paid to bank account</div>
+            </div>
+            <div class="stat-icon grey">
+              <img src="assets/icons/released.svg" alt="Released" width="22" height="22"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCROW STATUS TABLE -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Escrow Payment Status</span>
+            <a class="link-green" id="viewAllActive">View All Active</a>
+          </div>
+          <table class="escrow-table">
+            <thead>
+              <tr>
+                <th>Hospital &amp; Contract</th>
+                <th>Amount</th>
+                <th>Shifts</th>
+                <th>Release Status</th>
+              </tr>
+            </thead>
+            <tbody id="escrowBody">
+              <tr class="escrow-row"
+                data-name="Perfect Health &amp; Wellness"
+                data-contract="Cardiology Night Shift"
+                data-amount="GH₵ 1,200.00"
+                data-total="GH₵ 2,400.00"
+                data-done="4"
+                data-all="8"
+                data-status="Escrow Funded">
+                <td>
+                  <div class="hospital-name">Perfect Health &amp; Wellness</div>
+                  <div class="hospital-sub">Cardiology Night Shift</div>
+                </td>
+                <td>
+                  <div class="amount-primary">GH₵ 1,200.00</div>
+                  <div class="amount-total">Total: GH₵ 2,400.00</div>
+                </td>
+                <td>
+                  <div class="shift-progress">
+                    <span class="shift-label">4/8</span>
+                    <div class="progress-bar-wrap"><div class="progress-bar" style="width:50%"></div></div>
+                    <span class="shift-remaining">4 REMAINING</span>
+                  </div>
+                </td>
+                <td><span class="badge badge-funded">Escrow Funded</span></td>
+              </tr>
+              <tr class="escrow-row"
+                data-name="Ridge Medical Center"
+                data-contract="General Practice Support"
+                data-amount="GH₵ 3,000.00"
+                data-total="GH₵ 6,000.00"
+                data-done="2"
+                data-all="10"
+                data-status="Awaiting Shifts">
+                <td>
+                  <div class="hospital-name">Ridge Medical Center</div>
+                  <div class="hospital-sub">General Practice Support</div>
+                </td>
+                <td>
+                  <div class="amount-primary">GH₵ 3,000.00</div>
+                  <div class="amount-total">Total: GH₵ 6,000.00</div>
+                </td>
+                <td>
+                  <div class="shift-progress">
+                    <span class="shift-label">2/10</span>
+                    <div class="progress-bar-wrap"><div class="progress-bar" style="width:20%"></div></div>
+                    <span class="shift-remaining">8 REMAINING</span>
+                  </div>
+                </td>
+                <td><span class="badge badge-awaiting">Awaiting Shifts</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAYMENT HISTORY TABLE -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Payment History</span>
+            <div class="card-toolbar">
+              <button class="icon-btn" id="filterBtn" title="Filter">
+                <img src="assets/icons/filter.svg" alt="Filter" width="15" height="15"/>
+              </button>
+              <button class="icon-btn" id="exportBtn" title="Export CSV">
+                <img src="assets/icons/export.svg" alt="Export" width="15" height="15"/>
+              </button>
+            </div>
+          </div>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Details</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr class="history-row">
+                <td><div class="detail-name">St. Mary's Clinic</div><div class="detail-sub">Escrow Release – Pediatrics</div></td>
+                <td><span class="amount-primary">GH₵ 2,150.00</span></td>
+                <td><span class="badge badge-paid">PAID</span></td>
+                <td class="date-cell">Oct 12, 2023</td>
+              </tr>
+              <tr class="history-row">
+                <td><div class="detail-name">HealthPort Specialized</div><div class="detail-sub">Escrow Release – Surgery</div></td>
+                <td><span class="amount-primary">GH₵ 4,800.00</span></td>
+                <td><span class="badge badge-processing">PROCESSING</span></td>
+                <td class="date-cell">Oct 14, 2023</td>
+              </tr>
+              <tr class="history-row">
+                <td><div class="detail-name">Korle-Bu (Private Wing)</div><div class="detail-sub">Direct Deposit – Consultation</div></td>
+                <td><span class="amount-primary">GH₵ 1,200.00</span></td>
+                <td><span class="badge badge-paid">PAID</span></td>
+                <td class="date-cell">Oct 08, 2023</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- /left-col -->
+
+      <!-- RIGHT PANEL – ACTIVITY -->
+      <div class="activity-panel">
+        <div class="card-header">
+          <span class="card-title">Payment Activity</span>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item" data-toast="Perfect Health cardiology escrow released">
+            <div class="activity-dot-wrap"><div class="activity-dot green"></div></div>
+            <div>
+              <div class="activity-title">Escrow released</div>
+              <div class="activity-desc">Payment released for completed cardiology shifts at Perfect Health.</div>
+              <div class="activity-time">Today, 2:45 PM</div>
+            </div>
+          </div>
+          <div class="activity-item" data-toast="GH₵ 6,000 escrow funded by Ridge Medical">
+            <div class="activity-dot-wrap"><div class="activity-dot blue"></div></div>
+            <div>
+              <div class="activity-title">Escrow funded</div>
+              <div class="activity-desc">Ridge Medical Center deposited GH₵ 6,000.00 into contract escrow.</div>
+              <div class="activity-time">Yesterday, 10:20 AM</div>
+            </div>
+          </div>
+          <div class="activity-item" data-toast="New contract escrow setup for General Practice">
+            <div class="activity-dot-wrap"><div class="activity-dot grey"></div></div>
+            <div>
+              <div class="activity-title">New contract escrow created</div>
+              <div class="activity-desc">Initial setup for General Practice Support shifts.</div>
+              <div class="activity-time">Oct 12, 2023</div>
+            </div>
+          </div>
+          <div class="activity-item" data-toast="GH₵ 12,000 transferred to GCB Bank">
+            <div class="activity-dot-wrap"><div class="activity-dot green"></div></div>
+            <div>
+              <div class="activity-title">Bank withdrawal processed</div>
+              <div class="activity-desc">GH₵ 12,000.00 successfully transferred to GCB Bank account.</div>
+              <div class="activity-time">Oct 10, 2023</div>
+            </div>
+          </div>
+        </div>
+        <a class="view-log-btn" id="viewLogBtn">View Full Log</a>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+
+  <!-- ── WITHDRAW MODAL ──────────────────────────── -->
+  <div class="modal-overlay" id="withdrawModal">
+    <div class="modal">
+      <div class="modal-title">Withdraw Funds</div>
+      <div class="modal-sub">Transfer your released earnings to your bank account.</div>
+      <div class="modal-amount">
+        <span>Available to withdraw</span>
+        GH₵ 36,800.00
+      </div>
+      <div class="modal-field">
+        <label for="withdrawAmount">Amount (GH₵)</label>
+        <input type="number" id="withdrawAmount" placeholder="e.g. 5000" min="1" max="36800"/>
+      </div>
+      <div class="modal-field">
+        <label for="bankSelect">Bank Account</label>
+        <select id="bankSelect">
+          <option>GCB Bank – ****4820</option>
+          <option>Stanbic Bank – ****1133</option>
+          <option>Ecobank – ****7766</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelWithdraw">Cancel</button>
+        <button class="btn-primary" id="confirmWithdraw">
+          <img src="assets/icons/withdraw.svg" alt="" width="14" height="14"/>
+          Confirm Withdrawal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DETAIL MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal">
+      <div class="modal-title" id="detailTitle"></div>
+      <div class="modal-sub" id="detailSub"></div>
+      <div id="detailBody"></div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="closeDetailModal">Close</button>
+        <button class="btn-primary" id="viewContractBtn">
+          View Contract
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST  -->
+  <div class="toast" id="toast">
+    <div class="toast-icon">
+      <img src="assets/icons/check.svg" alt="✓" width="11" height="11"/>
+    </div>
+    <span id="toastMsg"></span>
+  </div>
+
+  <script src="../js/practitioner-session.js"></script>
+  <script>
+    (function () {
+      if (!window.PRACTITIONER_SESSION || !PRACTITIONER_SESSION.requireAuthFromPayments()) return;
+      var lo = document.getElementById("btnLogoutPayments");
+      if (lo) {
+        lo.addEventListener("click", function () {
+          PRACTITIONER_SESSION.logout();
+        });
+      }
+    })();
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>

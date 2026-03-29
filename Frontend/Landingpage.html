@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthLinka — Unified Healthcare Staffing &amp; Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+  <header class="hl-nav">
+    <a class="hl-logo" href="Landingpage.html">
+      <img src="SuperAdmin/assets/logo.png" alt="" width="36" height="36" />
+      HealthLinka
+    </a>
+
+    <div class="hl-nav-actions">
+      <button type="button" class="hl-btn hl-btn-login" id="btnNavLogin" aria-expanded="false" aria-haspopup="true" aria-controls="portalDropdown">
+        Login
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <button type="button" class="hl-btn hl-btn-start" id="btnNavStart" aria-expanded="false" aria-haspopup="true" aria-controls="portalDropdown">
+        Get Started
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="hl-dropdown" id="portalDropdown" role="menu" aria-hidden="true" aria-label="Choose portal">
+    <a role="menuitem" href="SuperAdmin/login/login.html">Super Admin</a>
+    <a role="menuitem" href="Hospital/Login.html">Hospital</a>
+    <a role="menuitem" href="Practioner/PractionerLogin/Login.html">Health Practitioner</a>
+  </div>
+
+  <section class="hl-hero">
+    <div class="hl-hero-copy">
+      <div class="hl-badge">
+        <img src="Practioner/Dashboard/assets/trustedIcon.png" alt="" width="18" height="18" />
+        <span>TRUSTED BY 500+ HEALTHCARE CENTERS</span>
+      </div>
+
+      <h1>
+        <span class="line">Unified Healthcare</span>
+        <span class="line"><span class="accent">Staffing</span> &amp;</span>
+        <span class="line">Management</span>
+      </h1>
+
+      <p class="hl-hero-lead">
+        Empowering practitioners, hospitals, and administrators with a seamless enterprise SaaS solution for modern healthcare collaboration and workforce optimization.
+      </p>
+
+      <div class="hl-hero-cta">
+        <button type="button" class="hl-btn hl-btn-start" id="btnHeroStart" aria-haspopup="true" aria-controls="portalDropdown">
+          Get Started
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hl-social">
+        <div class="hl-avatars">
+          <img src="Practioner/Dashboard/assets/Profile.png" alt="" width="40" height="40" />
+          <img src="Practioner/Dashboard/assets/profile2.png" alt="" width="40" height="40" />
+          <img src="Practioner/Dashboard/assets/profile3.png" alt="" width="40" height="40" />
+        </div>
+        <p>Joined by <strong>2,000+</strong> medical practitioners this month</p>
+      </div>
+    </div>
+
+    <div class="hl-hero-visual">
+      <img class="main-shot" src="Practioner/Dashboard/assets/landingpageImage.png" alt="Clinical operations workspace with care team monitoring data" />
+      <div class="hl-float-card">
+        <div class="hl-float-ico" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 21h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="lbl">EFFICIENCY BOOST</div>
+          <div class="val">+42% Higher Staffing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hl-portals-section">
+    <div class="hl-portals-inner">
+      <h2 class="hl-section-title">Enterprise-Grade Portals</h2>
+      <p class="hl-section-sub">A specialized ecosystem designed for every stakeholder in the healthcare journey.</p>
+
+      <div class="hl-portal-grid">
+        <article class="hl-card">
+          <div class="hl-card-icon green" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="6" y="4" width="12" height="16" rx="2"/>
+              <path d="M9 8h6M9 12h4"/>
+            </svg>
+          </div>
+          <h3>Health Practitioners</h3>
+          <p>Manage your professional profile, track shifts, and streamline clinical documentation in one place.</p>
+          <ul class="hl-features green-check">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Smart Scheduling
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Instant Credentialing
+            </li>
+          </ul>
+          <a class="hl-card-link" href="Practioner/PractionerLogin/Login.html">Enter Portal &gt;</a>
+        </article>
+
+        <article class="hl-card">
+          <div class="hl-card-icon blue" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v0M9 12v0M9 15v0M9 18v0"/>
+            </svg>
+          </div>
+          <h3>Hospital Facilities</h3>
+          <p>Optimize workforce management, fill shifts instantly, and reduce administrative overhead.</p>
+          <ul class="hl-features blue-check">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Auto-Staffing Matching
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Compliance Monitoring
+            </li>
+          </ul>
+          <a class="hl-card-link" href="Hospital/Login.html">Enter Portal &gt;</a>
+        </article>
+
+        <article class="hl-card">
+          <div class="hl-card-icon slate" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Super Admin</h3>
+          <p>Enterprise-wide oversight with advanced analytics, user management, and global configurations.</p>
+          <ul class="hl-features slate-check">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Global Data Insights
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Access Control Systems
+            </li>
+          </ul>
+          <a class="hl-card-link" href="SuperAdmin/login/login.html">Enter Portal &gt;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="hl-footer">
+    <a class="hl-logo" href="Landingpage.html">
+      <img src="SuperAdmin/assets/logo.png" alt="" width="32" height="32" />
+      HealthLinka
+    </a>
+    <div class="hl-footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Help and Support</a>
+    </div>
+    <span class="hl-footer-copy">© 2026 HealthLinka SaaS. All rights reserved.</span>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>

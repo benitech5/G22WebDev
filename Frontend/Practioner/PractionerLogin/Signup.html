@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practitioner Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Signup.css">
+  </head>
+
+  <body>
+    <header class="pl-page-head">
+      <a class="pl-brand" href="../../Landingpage.html">
+        <img src="../../SuperAdmin/assets/logo.png" alt="" width="40" height="40" />
+        <span class="pl-brand-text">HealthLinka</span>
+      </a>
+    </header>
+    <p class="pl-kicker">PRACTITIONER PORTAL</p>
+    <h1 class="pl-title">Create Account</h1>
+
+    <div class="Contain">
+      <form id="signupForm">
+
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Legal name as on your ID" autocomplete="name" required>
+        <span class="error" id="fullNameError"></span>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+        <span class="error" id="usernameError"></span>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <span class="error" id="passwordError"></span>
+
+        <label for="reenterPassword">Re-enter Password</label>
+        <input type="password" id="reenterPassword" name="reenter_password" placeholder="Re-enter your password">
+        <span class="error" id="reenterPasswordError"></span>
+
+        <span class="error" id="generalError"></span>
+
+        <button type="submit" id="signupBtn" class="pl-submit">
+          Proceed to verification
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+      </form>
+
+      <hr><br>
+      <p>Already have an account? <a href="Login.html" class="Account">Login here</a></p>
+    </div>
+
+    <script src="Signup.js"></script>
+  </body>
+</html>

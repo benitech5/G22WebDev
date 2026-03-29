@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthLinka Super Admin - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+    <header class="header-bar">
+        <div class="brand">
+            <img class="brand-logo" src="../assets/logo.png" alt="" />
+            <span class="brand-text">HealthLinka</span>
+            <span class="brand-sub">Super Admin</span>
+        </div>
+        <a href="#" class="support">Support</a>
+    </header>
+
+    <main class="login-main">
+        <section class="login-card">
+            <div class="hero">
+                <div class="hero-title">Welcome Back</div>
+                <div class="hero-sub">Enterprise Management Portal</div>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <label>
+                    <span>Email Address or Username</span>
+                    <div class="input-wrap">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2.3 0L12 10.5L17.7 6H6.3Zm11.7 2.2L12.6 12a1 1 0 0 1-1.2 0L6 8.2V18h12V8.2Z" />
+                            </svg>
+                        </span>
+                        <input type="text" id="email" placeholder="admin@healthlinka.com" required />
+                    </div>
+                </label>
+
+                <label>
+                    <span>Password</span>
+                    <div class="input-wrap">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M7 10V8a5 5 0 0 1 10 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1Zm2 0h6V8a3 3 0 0 0-6 0v2Zm3 4a2 2 0 0 0-1 3.7V19a1 1 0 1 0 2 0v-1.3A2 2 0 0 0 12 14Z" />
+                            </svg>
+                        </span>
+                        <input type="password" id="password" placeholder="••••••••" required />
+                        <button type="button" class="toggle-pass" id="togglePass" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7Zm0 2c-3.6 0-6.6 3.2-7 5 .4 1.8 3.4 5 7 5s6.6-3.2 7-5c-.4-1.8-3.4-5-7-5Zm0 2.2a2.8 2.8 0 1 1 0 5.6a2.8 2.8 0 0 1 0-5.6Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </label>
+
+                <div class="actions">
+                    <a href="#" class="forgot">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login to Dashboard ↪</button>
+                <p class="secure-note">Secure Enterprise Access Controlled by HealthLinka Security Protocols.</p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="foot-note">
+        © 2024 HealthLinka. All rights reserved.
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

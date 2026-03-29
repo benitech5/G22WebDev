@@ -1,0 +1,495 @@
+/* HealthLinka landing — matches enterprise marketing layout */
+:root {
+  --hl-green: #10b981;
+  --hl-green-dark: #059669;
+  --hl-blue: #2563eb;
+  --hl-text: #1f2937;
+  --hl-muted: #6b7280;
+  --hl-bg: #ffffff;
+  --hl-soft: #f9fafb;
+  --hl-badge-bg: #ecfdf5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--hl-text);
+  background: var(--hl-bg);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----- Nav ----- */
+.hl-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hl-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--hl-text);
+}
+
+.hl-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.hl-footer .hl-logo img {
+  width: 32px;
+  height: 32px;
+}
+
+.hl-logo-mark {
+  width: 40px;
+  height: 40px;
+  background: var(--hl-green);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hl-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.05s;
+}
+
+.hl-btn:active {
+  transform: scale(0.98);
+}
+
+.hl-btn-login {
+  background: var(--hl-blue);
+  color: #fff;
+}
+
+.hl-btn-login:hover,
+.hl-btn-start:hover {
+  filter: brightness(1.05);
+}
+
+.hl-btn-start {
+  background: var(--hl-green);
+  color: #fff;
+}
+
+.hl-btn svg {
+  flex-shrink: 0;
+}
+
+/* Dropdown — fixed so hero “Get Started” can open the same menu */
+.hl-dropdown {
+  position: fixed;
+  top: 72px;
+  right: 24px;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+}
+
+.hl-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.hl-dropdown a {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--hl-text);
+}
+
+.hl-dropdown a:hover {
+  background: var(--hl-soft);
+  color: var(--hl-green-dark);
+}
+
+/* ----- Hero ----- */
+.hl-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .hl-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.hl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--hl-badge-bg);
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.hl-badge img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.hl-badge span {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--hl-green-dark);
+}
+
+.hl-hero h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.hl-hero h1 .line {
+  display: block;
+}
+
+.hl-hero h1 .accent {
+  color: var(--hl-green);
+}
+
+.hl-hero-lead {
+  margin: 0 0 28px;
+  font-size: 1.05rem;
+  color: var(--hl-muted);
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+.hl-hero-cta {
+  margin-bottom: 28px;
+}
+
+.hl-hero-cta .hl-btn-start {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.hl-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hl-avatars {
+  display: flex;
+}
+
+.hl-avatars img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  margin-left: -12px;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.hl-avatars img:first-child {
+  margin-left: 0;
+}
+
+.hl-social p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--hl-muted);
+}
+
+.hl-social strong {
+  color: var(--hl-text);
+}
+
+/* Hero visual */
+.hl-hero-visual {
+  position: relative;
+}
+
+.hl-hero-visual > img.main-shot {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+}
+
+.hl-float-card {
+  position: absolute;
+  left: 16px;
+  bottom: 20px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 240px;
+}
+
+.hl-float-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--hl-badge-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hl-green);
+}
+
+.hl-float-card .lbl {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--hl-muted);
+  margin-bottom: 2px;
+}
+
+.hl-float-card .val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--hl-text);
+}
+
+/* ----- Portals ----- */
+.hl-portals-section {
+  background: var(--hl-soft);
+  padding: 64px 24px 80px;
+}
+
+.hl-portals-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hl-section-title {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hl-section-sub {
+  text-align: center;
+  margin: 0 auto 40px;
+  max-width: 560px;
+  color: var(--hl-muted);
+  font-size: 1rem;
+}
+
+.hl-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .hl-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hl-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.hl-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.hl-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.hl-card-icon.green {
+  background: #ecfdf5;
+  color: var(--hl-green);
+}
+
+.hl-card-icon.blue {
+  background: #eff6ff;
+  color: var(--hl-blue);
+}
+
+.hl-card-icon.slate {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.hl-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.hl-card > p {
+  margin: 0 0 18px;
+  font-size: 0.92rem;
+  color: var(--hl-muted);
+  line-height: 1.6;
+}
+
+.hl-features {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.hl-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--hl-text);
+}
+
+.hl-features li svg {
+  flex-shrink: 0;
+}
+
+.hl-features.green-check svg {
+  color: var(--hl-green);
+}
+
+.hl-features.blue-check svg {
+  color: var(--hl-blue);
+}
+
+.hl-features.slate-check svg {
+  color: #475569;
+}
+
+.hl-card-link {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--hl-green);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hl-card-link:hover {
+  text-decoration: underline;
+}
+
+/* ----- Footer ----- */
+.hl-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.hl-footer .hl-logo {
+  font-size: 1rem;
+}
+
+.hl-footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hl-footer-links a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+}
+
+.hl-footer-links a:hover {
+  color: var(--hl-text);
+}
+
+.hl-footer-copy {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}

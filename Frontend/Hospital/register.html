@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Registration — HealthLinka</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/hospital-auth.css" />
+</head>
+<body class="auth-page">
+  <header class="auth-header">
+    <a class="auth-logo" href="Login.html">
+      <img src="../SuperAdmin/assets/logo.png" alt="" width="36" height="36" />
+      HealthLinka
+    </a>
+    <div class="auth-step-meta">
+      <div class="step">STEP 1 OF 3</div>
+      <div class="sub">Account Setup</div>
+    </div>
+  </header>
+
+  <div class="auth-progress">
+    <span class="done"></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="auth-card-wrap">
+    <div class="auth-card">
+      <h1>Hospital Registration</h1>
+      <p class="lead">Join the HealthLinka network to streamline your healthcare management.</p>
+
+      <form id="regForm">
+        <div class="auth-field">
+          <label for="hname">Hospital Name</label>
+          <div class="auth-input-wrap">
+            <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span>
+            <input type="text" id="hname" placeholder="e.g. Perfect Health and Wellness Hospital" required />
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="hemail">Work Email</label>
+          <div class="auth-input-wrap">
+            <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <input type="email" id="hemail" placeholder="admin@hospital.com" required />
+          </div>
+          <div class="auth-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Use official hospital email</div>
+        </div>
+        <div class="auth-row-2">
+          <div class="auth-field">
+            <label for="pw1">Password</label>
+            <div class="auth-input-wrap">
+              <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+              <input type="password" id="pw1" required minlength="8" />
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="pw2">Confirm Password</label>
+            <div class="auth-input-wrap">
+              <span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+              <input type="password" id="pw2" required />
+            </div>
+          </div>
+        </div>
+        <label class="auth-check">
+          <input type="checkbox" id="terms" required />
+          <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+        </label>
+        <button type="submit" class="btn-auth-primary">Proceed to verification</button>
+      </form>
+
+      <p class="auth-footer-link">Already registered? <a href="Login.html">Log in to dashboard</a></p>
+    </div>
+  </div>
+
+  <div class="auth-trust">
+    <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> HIPAA COMPLIANT</span>
+    <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 256-BIT ENCRYPTED</span>
+    <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 24/7 SUPPORT</span>
+  </div>
+
+  <script src="js/register.js"></script>
+</body>
+</html>

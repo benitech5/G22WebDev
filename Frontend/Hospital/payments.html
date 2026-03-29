@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Payment Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/hospital-shared.css" />
+  <link rel="stylesheet" href="css/hospital-payments.css" />
+</head>
+<body class="hospital-portal">
+  <div class="hp-layout">
+    <aside class="hp-sidebar">
+      <div class="hp-brand">
+        <img src="../SuperAdmin/assets/logo.png" alt="HealthLinka logo" />
+        <div class="name">Perfect Health<br />Wellness Hospital</div>
+      </div>
+      <nav class="hp-nav">
+        <a href="dashboard.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a href="contracts.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Contracts
+        </a>
+        <a class="active" href="payments.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Payments
+        </a>
+      </nav>
+      <button type="button" class="hp-logout" id="btnLogout">Log out</button>
+      <button type="button" class="hp-emergency" id="btnEmergency"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l9 7-3 13H6L3 9l9-7z"/></svg> EMERGENCY ALERT</button>
+      <div class="hp-side-user">
+        <img src="../Practioner/Dashboard/assets/Profile.png" alt="" />
+        <div>
+          <div class="su-name" id="sideAdminName">Admin User</div>
+          <div class="su-role">Manager</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="hp-main">
+      <header class="hp-topbar">
+        <div class="hp-search" style="flex:0 1 360px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" placeholder="Search transactions..." id="paySearch" />
+        </div>
+        <div class="hp-tb-actions">
+          <button type="button" class="hp-icon-btn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 0 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 1 1-6 0h6z"/></svg></button>
+          <button type="button" class="hp-icon-btn thumb"><img src="../Practioner/Dashboard/assets/Profile.png" alt="" /></button>
+        </div>
+      </header>
+
+      <main class="hp-content">
+        <div class="hp-pay-head">
+          <h1>Hospital Payment Management</h1>
+          <p>Institutional Ledger &amp; Escrow Control Center</p>
+        </div>
+
+        <div class="pay-summary-grid">
+          <div class="ps-card">
+            <div class="lbl">TOTAL ESCROW BALANCE</div>
+            <div class="amt">GH₵1,240,500.00</div>
+            <div class="sub green">+2.4% vs last month</div>
+          </div>
+          <div class="ps-card">
+            <div class="lbl">PENDING RELEASES</div>
+            <div class="amt">GH₵112,300.50</div>
+            <div class="sub orange">14 Transfers Awaiting Approval</div>
+          </div>
+          <div class="ps-card">
+            <div class="lbl">DISBURSED THIS QUARTER</div>
+            <div class="amt">GH₵892,400.00</div>
+            <div class="sub green">98% Disbursement Accuracy</div>
+          </div>
+        </div>
+
+        <div class="pay-two-col">
+          <div>
+            <div class="pay-form-card deposit">
+              <div class="pf-head">＋ Deposit to Escrow</div>
+              <div class="pf-body">
+                <div class="pf-field">
+                  <label>Source Account</label>
+                  <select id="srcAcct">
+                    <option>Operating Fund Main - 8842</option>
+                    <option>Reserve Account - 2201</option>
+                  </select>
+                </div>
+                <div class="pf-field">
+                  <label>Amount (GH₵)</label>
+                  <input type="text" id="depAmt" placeholder="0.00" />
+                </div>
+                <div class="pf-field">
+                  <label>Reference / Memo</label>
+                  <input type="text" id="depMemo" placeholder="e.g. Monthly Staff Allotment" />
+                </div>
+                <button type="button" class="btn-h-primary" style="width:100%" id="btnOpenConfirm">Confirm Deposit</button>
+              </div>
+            </div>
+
+            <div class="pay-form-card release">
+              <div class="pf-head">↗ Release Payment</div>
+              <div class="pf-body">
+                <div class="pf-field">
+                  <label>Practitioner / Vendor</label>
+                  <select id="payRecipient">
+                    <option>Dr. Elena Rodriguez — Cardiology</option>
+                    <option>Dr. Marcus Thorne — Surgery</option>
+                  </select>
+                </div>
+                <div class="pf-field">
+                  <label>Amount to Release (GH₵)</label>
+                  <input type="text" id="relAmt" placeholder="0.00" />
+                </div>
+                <div class="pf-info">Available in Escrow: <strong>GH₵124,500.00</strong></div>
+                <button type="button" class="btn-h-primary" style="width:100%;background:var(--h-navy)" id="btnAuthorize">Authorize Transfer</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="tx-toolbar">
+              <strong>Transaction History</strong>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button type="button" class="btn-h-secondary" style="padding:6px 12px;font-size:0.8rem" id="btnTxFilter">Filter</button>
+                <input type="search" placeholder="Search…" style="padding:6px 10px;border:1px solid var(--h-border);border-radius:8px;font-size:0.82rem" />
+              </div>
+            </div>
+            <p style="margin:0 0 10px;font-size:0.82rem;color:var(--h-muted)">Real-time financial audit trail</p>
+            <div class="tx-table-wrap">
+              <table class="hp-table">
+                <thead>
+                  <tr>
+                    <th>DATE</th>
+                    <th>RECIPIENT / DESCRIPTION</th>
+                    <th>TYPE</th>
+                    <th>STATUS</th>
+                    <th>AMOUNT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Oct 14, 2023</td>
+                    <td>Dr. Elena Rodriguez<br /><span style="font-size:0.78rem;color:var(--h-muted)">Cardiology Consultation Group</span></td>
+                    <td><span class="pill-tx release">RELEASE</span></td>
+                    <td><span class="status-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span> Completed</td>
+                    <td><strong>GH₵4,250.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Oct 12, 2023</td>
+                    <td>Internal Escrow Top-up<br /><span style="font-size:0.78rem;color:var(--h-muted)">Ref: Monthly Operating Allocation</span></td>
+                    <td><span class="pill-tx deposit">DEPOSIT</span></td>
+                    <td><span class="status-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span> Completed</td>
+                    <td style="color:var(--h-green)"><strong>+GH₵25,000.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Oct 11, 2023</td>
+                    <td>Dr. Marcus Thorne<br /><span style="font-size:0.78rem;color:var(--h-muted)">Surgical Suite Fees</span></td>
+                    <td><span class="pill-tx release">RELEASE</span></td>
+                    <td><span class="status-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 2a10 10 0 0 0 0 20"/></svg></span> Processing</td>
+                    <td><strong>-GH₵12,800.00</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pag-row" style="border:1px solid var(--h-border);border-top:none;border-radius:0 0 12px 12px">
+              <span>Showing 1–5 of 248 transactions</span>
+              <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px"><polyline points="15 18 9 12 15 6"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </div>
+
+            <div class="payout-row">
+              <div class="payout-card">
+                <div class="avatar-sm">ER</div>
+                <div>
+                  <div style="font-weight:800;font-size:0.85rem">Rodriguez, E.</div>
+                  <div style="font-size:0.72rem;color:var(--h-muted)">Cardiology</div>
+                  <div style="font-size:0.78rem;font-weight:800;margin-top:4px">TOTAL PAYOUT MTD: GH₵14.2k</div>
+                </div>
+              </div>
+              <div class="payout-card">
+                <div class="avatar-sm">MT</div>
+                <div>
+                  <div style="font-weight:800;font-size:0.85rem">Thorne, M.</div>
+                  <div style="font-size:0.72rem;color:var(--h-muted)">Surgery</div>
+                  <div style="font-size:0.78rem;font-weight:800;margin-top:4px">TOTAL PAYOUT MTD: GH₵12.8k</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-foot-pay">
+          <span>Encrypted Institutional Financial Management Terminal · © 2026</span>
+          <span>
+            <a href="#" onclick="return false;">Audit Logs</a>
+            <a href="#" onclick="return false;">Security Policy</a>
+            <a href="#" onclick="return false;">System Health</a>
+          </span>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-h-overlay" id="modalDeposit" role="dialog" aria-labelledby="depTitle">
+    <div class="modal-dep">
+      <button type="button" class="modal-h-close" id="closeDep" style="position:absolute;top:12px;right:12px" aria-label="Close">×</button>
+      <h2 id="depTitle"><span style="color:var(--h-green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.8 9.8-8 10-4.2-.2-8-5-8-10V6l8-4z"/></svg></span> Confirm Deposit</h2>
+      <div class="dep-hero">
+        <div class="circle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><line x1="2" y1="11" x2="22" y2="11"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="big">GH₵5,000.00</div>
+        <div class="sub">Deposit for Dr. Sarah Smith</div>
+      </div>
+      <div class="dep-rows">
+        <div class="dep-row"><span>Contract</span><strong>Surgical Services Q4</strong></div>
+        <div class="dep-row"><span>Service Period</span><strong>Oct – Dec 2023</strong></div>
+        <div class="dep-row"><span>Escrow Fee (0.5%)</span><strong>GH₵25.00</strong></div>
+        <div class="dep-row total"><span>TOTAL DEPOSIT</span><span class="v">GH₵5,025.00</span></div>
+      </div>
+      <div class="dep-info">
+        <span style="font-size:1.2rem" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <span><strong>Escrow Protection Enabled:</strong> Funds will be held securely in the hospital's verified escrow account. Payment will only be released to the practitioner once milestones are verified and approved by the department head.</span>
+      </div>
+      <div class="dep-actions">
+        <button type="button" class="cancel" id="depCancel">Cancel</button>
+        <button type="button" class="go" id="depConfirm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Confirm &amp; Deposit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-h" id="toastH"></div>
+
+  <script src="js/hospital-session.js"></script>
+  <script src="js/payments.js"></script>
+</body>
+</html>

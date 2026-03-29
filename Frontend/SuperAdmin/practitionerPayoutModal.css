@@ -1,0 +1,125 @@
+:root{
+  --ppm-overlay: rgba(64, 76, 90, 0.78);
+  --ppm-card: #ffffff;
+  --ppm-line: #eef2f6;
+  --ppm-text: #1f2a37;
+  --ppm-muted: #7b91a5;
+  --ppm-shadow: 0 24px 70px rgba(10, 22, 34, 0.35);
+  --ppm-soft: #f6fbff;
+  --ppm-green: #0f8b6f;
+}
+
+.ppm{ border:none; padding:0; background:transparent; }
+.ppm::backdrop{ background: var(--ppm-overlay); }
+
+.ppm-card{
+  width: min(700px, calc(100vw - 40px));
+  background: var(--ppm-card);
+  border: 1px solid var(--ppm-line);
+  border-radius: 14px;
+  box-shadow: var(--ppm-shadow);
+  overflow: hidden;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  color: var(--ppm-text);
+}
+
+.ppm-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding: 16px 16px 12px;
+}
+
+.ppm-title{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ppm-ico{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #f7fdfb;
+  border: 1px solid #e6f4ef;
+  display:grid;
+  place-items:center;
+}
+
+.ppm-ico img{ width:18px; height:18px; display:block; }
+
+.ppm-close{
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+}
+.ppm-close:hover{ background:#f6f9fc; }
+.ppm-close svg{ width:18px; height:18px; fill:#2f4f4f; opacity:.75; }
+
+.ppm-divider{ height:1px; background: var(--ppm-line); }
+.ppm-body{ padding: 18px 18px 14px; }
+
+.ppm-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 22px;
+}
+
+.ppm-field{ display:grid; gap:4px; }
+.ppm-k{ font-size: 11px; font-weight: 600; color: var(--ppm-muted); }
+.ppm-v{ font-size: 12px; font-weight: 600; color: #223447; }
+
+.ppm-pill{
+  margin-bottom: 12px;
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eaf9f1;
+  border: 1px solid #d3f2e2;
+  color: #1e7b55;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ppm-note{
+  margin-top: 14px;
+  background: var(--ppm-soft);
+  border: 1px solid #e7f0fb;
+  border-radius: 10px;
+  padding: 12px;
+  color:#5b7488;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.ppm-actions{
+  padding: 12px 18px 16px;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.ppm-btn{
+  border:none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor:pointer;
+  font-weight: 700;
+  font-size: 12px;
+  color:#fff;
+  background: linear-gradient(135deg, #11ae6c, #0d9a57);
+}
+
+@media (max-width: 560px){
+  .ppm-grid{ grid-template-columns: 1fr; }
+}
+

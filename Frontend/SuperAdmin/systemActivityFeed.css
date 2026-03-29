@@ -1,0 +1,127 @@
+:root{
+  --saf-row: #ffffff;
+  --saf-line: #eef4f8;
+  --saf-muted: #7b91a5;
+  --saf-text: #223447;
+  --saf-soft: #f6fbff;  /* very light legibility tint */
+  --saf-soft-2: #f7fdfb; /* very light green tint */
+  --saf-tone-success: #f3fdf8; /* very light green */
+  --saf-tone-pending: #f5f9ff; /* very light blue */
+  --saf-tone-danger: #fff5f7;  /* very light red */
+}
+
+.activity-wrap{
+  padding: 8px 10px 14px;
+}
+
+.activity-feed{
+  display: grid;
+  gap: 10px;
+  padding: 8px;
+}
+
+.saf-item{
+  background: var(--saf-row);
+  border: 1px solid var(--saf-line);
+  border-radius: 14px;
+  padding: 12px 12px;
+  display: grid;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.saf-item[data-tone="success"]{
+  background: linear-gradient(180deg, var(--saf-tone-success), #ffffff);
+}
+
+.saf-item[data-tone="pending"]{
+  background: linear-gradient(180deg, var(--saf-tone-pending), #ffffff);
+}
+
+.saf-item[data-tone="danger"]{
+  background: linear-gradient(180deg, var(--saf-tone-danger), #ffffff);
+}
+
+.saf-item:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(22, 34, 52, 0.10);
+}
+
+.saf-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.saf-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.saf-ico{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--saf-soft-2);
+  border: 1px solid #e6f4ef;
+  flex: 0 0 auto;
+}
+
+.saf-ico img{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.saf-headline{
+  font-weight: 700;
+  color: var(--saf-text);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.saf-meta{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--saf-muted);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.saf-amount{
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--saf-soft);
+  border: 1px solid #e7f0fb;
+  color: #2b475e;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.saf-sub{
+  color: var(--saf-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  background: var(--saf-soft);
+  border: 1px solid #e7f0fb;
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+
+.saf-empty{
+  padding: 18px 12px;
+  color: var(--saf-muted);
+  font-weight: 500;
+}
+

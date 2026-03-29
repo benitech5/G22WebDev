@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthLinka Super Admin - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="../verificationModals/hospitalVerificationModal.css" />
+  <link rel="stylesheet" href="../verificationModals/practitionerVerificationModal.css" />
+  <link rel="stylesheet" href="../ContractandSystemActivitymodals/activityDetailsModal.css" />
+  <link rel="stylesheet" href="../systemActivityFeed.css" />
+  <link rel="stylesheet" href="../ContractandSystemActivitymodals/escrowPaymentModal.css" />
+  <link rel="stylesheet" href="../practitionerPayoutModal.css" />
+  <link rel="stylesheet" href="../ContractandSystemActivitymodals/paymentReleaseModal.css" />
+  <link rel="stylesheet" href="../ContractandSystemActivitymodals/contractChangeModal.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="dashboard.html" aria-label="HealthLinka Dashboard">
+        <img class="brand-logo" src="../assets/logo.png" alt="" />
+        <span class="brand-text">HealthLinka</span>
+      </a>
+
+      <div class="search" role="search">
+        <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M10.5 3a7.5 7.5 0 1 1 4.66 13.39l3.22 3.22a1 1 0 0 1-1.42 1.42l-3.22-3.22A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z" />
+        </svg>
+        <input id="searchInput" type="search" placeholder="Search records..." autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 22a2.25 2.25 0 0 0 2.2-1.8h-4.4A2.25 2.25 0 0 0 12 22Zm7-6V11a7 7 0 1 0-14 0v5l-1.6 1.6A1 1 0 0 0 4.1 20h15.8a1 1 0 0 0 .7-1.7L19 16Z" />
+        </svg>
+      </button>
+
+      <div class="profile">
+        <div class="profile-meta">
+          <div class="profile-name">Alex Rivera</div>
+          <div class="profile-role">Super Admin</div>
+        </div>
+        <div class="avatar" aria-hidden="true">
+          <img class="avatar-img" src="../assets/AlexRiveraProfile.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="tabs" aria-label="Dashboard sections">
+      <button class="tab is-active" data-tab="verification" type="button">
+        <span class="tab-dot" aria-hidden="true"></span>
+        Verification
+      </button>
+      <button class="tab" data-tab="activity" type="button">
+        <span class="tab-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M4 19a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2.2a1 1 0 0 1 .8.4l1.2 1.6H20a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4Zm1-2h14V9H8.7a1 1 0 0 1-.8-.4L6.7 7H5v10Z" />
+          </svg>
+        </span>
+        Contract &amp; System Activity
+      </button>
+    </nav>
+
+    <section id="tab-verification" class="tab-panel is-active" aria-label="Verification">
+      <section class="card">
+        <header class="card-head">
+          <div class="card-title">
+            <span class="badge-ico" aria-hidden="true">
+              <img src="../assets/Icon.png" alt="" />
+            </span>
+            Practitioner Verification
+          </div>
+          <div class="chip" id="pendingChip">0 Pending Requests</div>
+        </header>
+
+        <div class="table-wrap" aria-label="Practitioner verification table">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Practitioner Name</th>
+                <th>Specialization</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th class="th-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="practitionerTbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <div class="card-title">
+            <span class="badge-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 3a9 9 0 0 0-9 9v7a1 1 0 0 0 1 1h5v-7h6v7h5a1 1 0 0 0 1-1v-7a9 9 0 0 0-9-9Zm-5 8.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Zm10 0a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Z" />
+              </svg>
+            </span>
+            Hospital Verification
+          </div>
+        </header>
+
+        <div class="table-wrap" aria-label="Hospital verification table">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Hospital Name</th>
+                <th>Region</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th class="th-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="hospitalTbody"></tbody>
+          </table>
+        </div>
+
+        <div class="card-foot">
+          <button class="ghost-btn" id="loadMoreHospitals" type="button">Load more hospitals</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="tab-activity" class="tab-panel" aria-label="Contract & System Activity">
+      <section class="card">
+        <header class="card-head">
+          <div class="card-title">Contract &amp; System Activity</div>
+        </header>
+        <div class="activity-wrap">
+          <div id="systemActivityFeed" class="activity-feed" aria-label="System activity feed"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">© 2024 HealthLinka. All rights reserved.</footer>
+
+  <dialog class="modal" id="detailsModal" aria-label="Details">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">Details</div>
+        <button class="icon-btn" id="closeModal" aria-label="Close details" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6L7.1 5.7a1 1 0 0 0-1.4 1.4l4.9 4.9l-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-actions">
+        <button class="primary-btn" id="modalOk" type="button">OK</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="../verificationModals/hospitalVerificationModal.js"></script>
+  <script src="../verificationModals/practitionerVerificationModal.js"></script>
+  <script src="../ContractandSystemActivitymodals/activityDetailsModal.js"></script>
+  <script src="../ContractandSystemActivitymodals/escrowPaymentModal.js"></script>
+  <script src="../practitionerPayoutModal.js"></script>
+  <script src="../ContractandSystemActivitymodals/paymentReleaseModal.js"></script>
+  <script src="../ContractandSystemActivitymodals/contractChangeModal.js"></script>
+  <script src="../systemActivityFeed.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+
+</html>
