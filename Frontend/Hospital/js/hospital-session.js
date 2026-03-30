@@ -86,6 +86,14 @@
     }
   }
 
+  function getHospitalName() {
+    try {
+      return localStorage.getItem("hl_hospital_reg_name") || "Perfect Health Wellness Hospital";
+    } catch (e) {
+      return "Perfect Health Wellness Hospital";
+    }
+  }
+
   global.HOSPITAL_SESSION = {
     KEYS: KEYS,
     PATHS: PATHS,
@@ -94,6 +102,7 @@
     logout: logout,
     requireAuth: requireAuth,
     getAdmin: getAdmin,
+    getHospitalName: getHospitalName,
   };
 
   function bindHospitalLogout() {

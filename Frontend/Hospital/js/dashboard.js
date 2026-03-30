@@ -13,6 +13,12 @@
   var el = document.getElementById("sideAdminName");
   if (el) el.textContent = name.charAt(0).toUpperCase() + name.slice(1);
 
+  var brandNameEl = document.querySelector('.hp-brand .name');
+  if (brandNameEl) {
+    var hospitalName = HOSPITAL_SESSION.getHospitalName ? HOSPITAL_SESSION.getHospitalName() : localStorage.getItem('hl_hospital_reg_name') || '';
+    if (hospitalName) brandNameEl.textContent = hospitalName;
+  }
+
   function getHospitalId() {
     return (window.HOSPITAL_SESSION && typeof HOSPITAL_SESSION.getHospitalId === 'function')
       ? HOSPITAL_SESSION.getHospitalId()

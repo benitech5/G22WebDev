@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Verification Success — Hospital Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Practioner/credentialandverify/css/verification-success.css" />
+</head>
+<body class="success-page">
+  <header class="success-header">
+    <div class="success-brand">
+      <img src="../../Practioner/credentialandverify/assets/GHSVerificationicon.png" alt="Verification icon" />
+      <span>Hospital Verification Portal</span>
+    </div>
+    <nav class="success-nav" aria-label="Hospital portal">
+      <a href="../dashboard.html">Dashboard</a>
+      <a href="verification-success.html" class="active" aria-current="page">Certificate</a>
+    </nav>
+    <div class="success-profile" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </div>
+  </header>
+
+  <div class="success-wrap">
+    <div class="page-head">
+      <div>
+        <h1>Facility Certificate</h1>
+        <p>View and print your hospital verification certificate for administrative use.</p>
+      </div>
+      <button type="button" class="btn-download" id="btnDownload">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Print Cert
+      </button>
+    </div>
+
+    <article class="cert-card">
+      <div class="cert-top">
+        <div>
+          <p class="cert-republic">REPUBLIC OF GHANA</p>
+          <p class="cert-ghs">HEALTHLINKA HOSPITAL NETWORK</p>
+        </div>
+        <span class="official-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          OFFICIAL DIGITAL DOCUMENT
+        </span>
+      </div>
+
+      <div class="cert-body">
+        <p class="pre">THIS IS TO OFFICIALLY CERTIFY THAT</p>
+        <h2 class="cert-name" id="certName">Verified Hospital</h2>
+        <div class="cert-divider" aria-hidden="true"></div>
+        <p class="cert-desc" id="certDesc"></p>
+      </div>
+
+      <div class="cert-meta-bar">
+        <div class="meta-item">
+          <div class="meta-label">VERIFICATION ID</div>
+          <div class="meta-value">HLH-HOSP-2026-0012</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">DATE OF ISSUE</div>
+          <div class="meta-value">March 30, 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">EXPIRY DATE</div>
+          <div class="meta-value">March 29, 2027</div>
+        </div>
+      </div>
+
+      <div class="cert-footer-row">
+        <div class="sig-block">
+          <div class="line" aria-hidden="true"></div>
+          <div class="role">HealthLinka Certification Officer</div>
+          <div class="esig">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            E-Signature Verified
+          </div>
+        </div>
+        <div class="qr-wrap">
+          <img src="../../Practioner/credentialandverify/assets/qrcodeimage.png" alt="Verification QR code" />
+        </div>
+        <div class="seal-wrap">
+          <img src="../../Practioner/credentialandverify/assets/officialdigitalsealimage.png" alt="Official digital seal" />
+          <div class="seal-cap">OFFICIAL DIGITAL SEAL</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="action-grid">
+      <button type="button" class="action-card" id="cardShare">
+        <div class="action-ico blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+            <polyline points="16 6 12 2 8 6" />
+            <line x1="12" y1="2" x2="12" y2="15" />
+          </svg>
+        </div>
+        <div>
+          <h3>Share Verification Link</h3>
+          <p>Generate a secure link for partners to confirm your facility status.</p>
+        </div>
+        <span class="chev" aria-hidden="true">›</span>
+      </button>
+      <button type="button" class="action-card" id="cardHistory">
+        <div class="action-ico green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+        <div>
+          <h3>Verification History</h3>
+          <p>Review prior verification events and status changes.</p>
+        </div>
+        <span class="chev" aria-hidden="true">›</span>
+      </button>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Help &amp; Support</a>
+    </div>
+  </div>
+
+  <script src="js/verification-success.js"></script>
+</body>
+</html>

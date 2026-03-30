@@ -11,6 +11,6 @@
       localStorage.setItem("hl_hospital_reg_name", document.getElementById("hname").value);
       localStorage.setItem("hl_portal_type", "hospital");
     } catch (err) {}
-    window.location.href = "../Practioner/credentialandverify/credentials.html";
+    window.location.href = "credentialandverify/credentials.html";
   });
 })();
