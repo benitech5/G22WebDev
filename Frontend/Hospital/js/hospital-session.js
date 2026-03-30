@@ -12,7 +12,7 @@
 
   var PATHS = {
     login: "Login.html",
-    landing: "../Landingpage.html",
+    landing: "../index.html",
     dashboard: "dashboard.html",
     contracts: "contracts.html",
     payments: "payments.html",

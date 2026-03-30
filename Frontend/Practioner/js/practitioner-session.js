@@ -14,7 +14,7 @@
 
   var PATHS = {
     login: "../PractionerLogin/Login.html",
-    landing: "../../Landingpage.html",
+    landing: "../../index.html",
     dashboard: "dashboard.html",
     contracts: "my-contracts.html",
     hospitals: "hospital-search.html",
