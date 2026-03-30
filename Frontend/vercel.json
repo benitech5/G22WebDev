@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://g22webdev.onrender.com/api/$1"
+    }
+  ]
+}

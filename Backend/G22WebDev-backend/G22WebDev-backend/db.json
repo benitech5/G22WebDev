@@ -105,7 +105,7 @@
       "email": "Kwamena@practitioners.com",
       "password": "$2b$10$VrIyhew7yhIUGQ6BHYlxwOT1sWCc3V3Gb13V739VcWK.NolKav/uO",
       "role": "practitioner",
-      "name": "Kwamena",
+      "name": "Kwamena Afful",
       "avatar": null
     }
   ],
@@ -225,6 +225,24 @@
       "initials": "T",
       "specialization": "Senior Cardiologist",
       "licenseNumber": "45678",
+      "region": "Greater Accra",
+      "status": "Pending",
+      "registrationDate": "2026-03-30",
+      "online": false,
+      "avatar": null,
+      "phone": "",
+      "email": "",
+      "profession": "Senior Cardiologist",
+      "documentsSubmitted": 0,
+      "documentsRequired": 4
+    },
+    {
+      "id": "p107",
+      "userId": "u111",
+      "name": "Kwamena Afful",
+      "initials": "KA",
+      "specialization": "Senior Cardiologist",
+      "licenseNumber": "123456",
       "region": "Greater Accra",
       "status": "Pending",
       "registrationDate": "2026-03-30",
