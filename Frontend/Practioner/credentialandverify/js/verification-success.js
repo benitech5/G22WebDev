@@ -41,9 +41,10 @@
   }
 
   var dl = document.getElementById("btnDownload");
+
   if (dl) {
     dl.addEventListener("click", function () {
-      toast("PDF download would start here once the backend is connected.");
+      window.print();
     });
   }
 

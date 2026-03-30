@@ -472,3 +472,26 @@ body.success-page {
 .portal-cta-btn.primary:hover {
   filter: brightness(0.95);
 }
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .cert-card,
+  .cert-card * {
+    visibility: visible !important;
+  }
+
+  .cert-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .cert-card {
+    page-break-inside: avoid;
+  }
+}
