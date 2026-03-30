@@ -107,12 +107,26 @@
     });
     dlg.querySelectorAll("[data-pvm-close]").forEach((b) => b.addEventListener("click", close));
 
-    $("[data-pvm-approve]", dlg).addEventListener("click", () => {
-      alert(`Approved: ${dlg.dataset.pvmName || "Practitioner"}`);
+    $("[data-pvm-approve]", dlg).addEventListener("click", async () => {
+      const name = dlg.dataset.pvmName || "Practitioner";
+      const id = dlg.dataset.pvmPractitionerId;
+      const result = id ? await adminPatch(`/admin/practitioners/${id}/verify`, { status: 'Verified' }) : null;
+      if (result) {
+        alert(`Approved: ${name}`);
+      } else {
+        alert(`Approved locally: ${name}`);
+      }
       close();
     });
-    $("[data-pvm-reject]", dlg).addEventListener("click", () => {
-      alert(`Rejected: ${dlg.dataset.pvmName || "Practitioner"}`);
+    $("[data-pvm-reject]", dlg).addEventListener("click", async () => {
+      const name = dlg.dataset.pvmName || "Practitioner";
+      const id = dlg.dataset.pvmPractitionerId;
+      const result = id ? await adminPatch(`/admin/practitioners/${id}/verify`, { status: 'Rejected' }) : null;
+      if (result) {
+        alert(`Rejected: ${name}`);
+      } else {
+        alert(`Rejected locally: ${name}`);
+      }
       close();
     });
 
@@ -161,6 +175,7 @@
     const name = data.name || "Dr. Kofi Mensah";
     const spec = data.specialization ? `${data.specialization} Specialist` : "Cardiology Specialist";
 
+    dlg.dataset.pvmPractitionerId = data.id || data.practitionerId || '';
     dlg.dataset.pvmName = name;
     $("[data-pvm-name]", dlg).textContent = name;
     $("[data-pvm-spec]", dlg).textContent = spec;

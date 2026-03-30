@@ -1,9 +1,26 @@
+const BACKEND_API = (function () {
+  if (typeof window === 'undefined') return 'http://localhost:4000/api';
+  if (window.BACKEND_API) return window.BACKEND_API;
+  if (!window.location.hostname || window.location.protocol === 'file:') return 'http://localhost:4000/api';
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:4000/api';
+  }
+  return '/api';
+})();
 const form = document.getElementById("signupForm");
 const fullNameInput = document.getElementById("fullName");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const reenterPasswordInput = document.getElementById("reenterPassword");
 const signupBtn = document.getElementById("signupBtn");
+
+function storeSignupData(userId, username, fullName) {
+  try {
+    if (userId) localStorage.setItem("hl_practitioner_userId", userId);
+    localStorage.setItem("hl_signup_username", username);
+    if (fullName) localStorage.setItem("hl_signup_fullname", fullName);
+  } catch (e) {}
+}
 
 const fullNameError = document.getElementById("fullNameError");
 const usernameError = document.getElementById("usernameError");
@@ -77,27 +94,31 @@ form.addEventListener("submit", async (e) => {
   const fullName = fullNameInput ? fullNameInput.value.trim() : "";
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/register", {
+    const email = username + "@practitioners.com";
+    const response = await fetch(`${BACKEND_API}/auth/register/practitioner`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username,
+        email: email,
         password: passwordInput.value,
       }),
     });
 
-    const data = await response.json();
-
-    if (response.ok) {
+    const data = await response.json().catch(() => ({}));
+    if (response.ok && data.userId) {
+      storeSignupData(data.userId, username, fullName);
       goToCredentials(username, fullName);
       return;
     }
 
     /* Demo: continue to credentials when API is not available */
+    storeSignupData(null, username, fullName);
     goToCredentials(username, fullName);
     return;
   } catch (err) {
-    generalError.textContent = "";
+    generalError.textContent = "Backend unavailable — continuing with demo signup.";
+    storeSignupData(null, username, fullName);
     goToCredentials(username, fullName);
     return;
   } finally {

@@ -2,6 +2,15 @@
   const MODAL_ID = "hospitalVerificationModal";
 
   const asset = (name) => `../assets/${name}`;
+  const BACKEND_API = (function () {
+    if (typeof window === 'undefined') return 'http://localhost:4000/api';
+    if (window.BACKEND_API) return window.BACKEND_API;
+    if (!window.location.hostname || window.location.protocol === 'file:') return 'http://localhost:4000/api';
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:4000/api';
+    }
+    return '/api';
+  })();
 
   const icons = {
     shieldCheck: `<img src="${asset("Icon.png")}" alt="" />`,
@@ -43,6 +52,29 @@
   };
 
   const $ = (sel, root = document) => root.querySelector(sel);
+
+  function getAdminToken() {
+    return sessionStorage.getItem('superadmin_token') || '';
+  }
+
+  async function adminPatch(path, body) {
+    const token = getAdminToken();
+    if (!token) return null;
+    try {
+      const res = await fetch(`${BACKEND_API}${path}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) return null;
+      return await res.json().catch(() => null);
+    } catch (err) {
+      return null;
+    }
+  }
 
   function ensureModal() {
     let dlg = document.getElementById(MODAL_ID);
@@ -111,14 +143,26 @@
     });
     dlg.querySelectorAll("[data-hvm-close]").forEach((btn) => btn.addEventListener("click", close));
 
-    $("[data-hvm-approve]", dlg).addEventListener("click", () => {
+    $("[data-hvm-approve]", dlg).addEventListener("click", async () => {
       const name = dlg.dataset.hospitalName || "Hospital";
-      alert(`Approved: ${name}`);
+      const id = dlg.dataset.hvmHospitalId;
+      const result = id ? await adminPatch(`/admin/hospitals/${id}/verify`, { status: 'Active' }) : null;
+      if (result) {
+        alert(`Approved: ${name}`);
+      } else {
+        alert(`Approved locally: ${name}`);
+      }
       close();
     });
-    $("[data-hvm-reject]", dlg).addEventListener("click", () => {
+    $("[data-hvm-reject]", dlg).addEventListener("click", async () => {
       const name = dlg.dataset.hospitalName || "Hospital";
-      alert(`Rejected: ${name}`);
+      const id = dlg.dataset.hvmHospitalId;
+      const result = id ? await adminPatch(`/admin/hospitals/${id}/verify`, { status: 'Rejected' }) : null;
+      if (result) {
+        alert(`Rejected: ${name}`);
+      } else {
+        alert(`Rejected locally: ${name}`);
+      }
       close();
     });
 
@@ -211,6 +255,7 @@
 
   function openHospitalVerificationModal(data = {}) {
     const dlg = ensureModal();
+    dlg.dataset.hvmHospitalId = data.id || data.hospitalId || '';
     dlg.dataset.hospitalName = data.name || data.hospitalName || "";
 
     renderFacility(dlg, {

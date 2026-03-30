@@ -1,4 +1,42 @@
 (function () {
+  const BACKEND_API = (function () {
+    if (typeof window === 'undefined') return 'http://localhost:4000/api';
+    if (window.BACKEND_API) return window.BACKEND_API;
+    if (!window.location.hostname || window.location.protocol === 'file:') return 'http://localhost:4000/api';
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:4000/api';
+    }
+    return '/api';
+  })();
+
+  function getPractitionerToken() {
+    try {
+      return localStorage.getItem("hl_practitioner_token") || ""
+    } catch (e) {
+      return ""
+    }
+  }
+
+  function getSignupUserId() {
+    try {
+      return localStorage.getItem("hl_practitioner_userId") || localStorage.getItem("hl_signup_userId") || ""
+    } catch (e) {
+      return ""
+    }
+  }
+
+  function sendCredentialsToBackend(payload) {
+    const token = getPractitionerToken()
+    return fetch(`${BACKEND_API}/auth/credentials`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify(payload),
+    }).then((res) => res.json().catch(() => ({})))
+  }
+
   (function initFullName() {
     var el = document.getElementById("fullName");
     if (!el) return;
@@ -61,7 +99,7 @@
     fileInput.dispatchEvent(new Event("change", { bubbles: true }));
   });
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
     var fullName = (document.getElementById("fullName").value || "").trim();
     var profession = document.getElementById("profession").value;
@@ -71,6 +109,24 @@
     if (!fullName || !profession || !region) {
       alert("Please complete all required fields.");
       return;
+    }
+
+    var payload = {
+      fullName: fullName,
+      profession: profession,
+      licenseNumber: license,
+      region: region,
+    }
+    var userId = getSignupUserId()
+    if (userId) payload.userId = userId
+
+    try {
+      const response = await sendCredentialsToBackend(payload)
+      if (response && response.practitionerId) {
+        sessionStorage.setItem("hl_practitioner_profile_id", response.practitionerId)
+      }
+    } catch (err) {
+      console.warn("Credential backend failed", err)
     }
 
     try {

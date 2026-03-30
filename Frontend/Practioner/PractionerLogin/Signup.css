@@ -19,7 +19,9 @@ body {
 .pl-page-head {
   width: 100%;
   max-width: 420px;
-  margin-bottom: 0.5rem;
+  margin: 0 auto 0.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .pl-brand {

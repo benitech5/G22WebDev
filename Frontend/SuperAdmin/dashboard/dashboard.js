@@ -1,21 +1,102 @@
 const $ = (sel) => document.querySelector(sel);
+const BACKEND_API = (function () {
+  if (typeof window === 'undefined') return 'http://localhost:4000/api';
+  if (window.BACKEND_API) return window.BACKEND_API;
+  if (!window.location.hostname || window.location.protocol === 'file:') return 'http://localhost:4000/api';
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:4000/api';
+  }
+  return '/api';
+})();
 
 const practitionerData = [
-  { initials: "KM", name: "Dr. Kofi Mensah", specialization: "Cardiology", date: "Oct 12, 2023", status: "Pending" },
-  { initials: "MT", name: "Mark Thompson", specialization: "Emergency Nursing", date: "Oct 14, 2023", status: "Verified" },
-  { initials: "JW", name: "Dr. James Wilson", specialization: "Pediatrics", date: "Oct 15, 2023", status: "In Review" },
+  { initials: "KM", name: "Dr. Kofi Mensah", specialization: "Cardiology", date: "Oct 12, 2023", status: "Pending", id: "p002" },
+  { initials: "MT", name: "Mark Thompson", specialization: "Emergency Nursing", date: "Oct 14, 2023", status: "Verified", id: "p010" },
+  { initials: "JW", name: "Dr. James Wilson", specialization: "Pediatrics", date: "Oct 15, 2023", status: "In Review", id: "p003" },
 ];
 
 const hospitalDataAll = [
-  { name: "Perfect Health and Wellness Centre", region: "Greater Accra", date: "Sep 28, 2023", status: "Active" },
-  { name: "Central Care Clinic", region: "Ashanti", date: "Oct 05, 2023", status: "Pending" },
-  { name: "Blue Ridge Hospital", region: "Eastern", date: "Oct 06, 2023", status: "Pending" },
-  { name: "Sunrise Specialist Center", region: "Greater Accra", date: "Oct 07, 2023", status: "Active" },
-  { name: "Northpoint Medical", region: "Northern", date: "Oct 09, 2023", status: "In Review" },
-  { name: "Lakeside Community Hospital", region: "Volta", date: "Oct 10, 2023", status: "Active" },
+  { id: "h001", name: "Perfect Health and Wellness Centre", region: "Greater Accra", date: "Sep 28, 2023", status: "Active" },
+  { id: "h002", name: "Central Care Clinic", region: "Ashanti", date: "Oct 05, 2023", status: "Pending" },
+  { id: "h003", name: "Blue Ridge Hospital", region: "Eastern", date: "Oct 06, 2023", status: "Pending" },
+  { id: "h004", name: "Sunrise Specialist Center", region: "Greater Accra", date: "Oct 07, 2023", status: "Active" },
+  { id: "h005", name: "Northpoint Medical", region: "Northern", date: "Oct 09, 2023", status: "In Review" },
+  { id: "h006", name: "Lakeside Community Hospital", region: "Volta", date: "Oct 10, 2023", status: "Active" },
 ];
 
 let hospitalRenderCount = 2;
+
+function getAdminToken() {
+  return sessionStorage.getItem('superadmin_token') || '';
+}
+
+async function backendFetch(path, options = {}) {
+  try {
+    const token = getAdminToken();
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
+    };
+    if (token) headers.Authorization = `Bearer ${token}`;
+
+    const response = await fetch(`${BACKEND_API}${path}`, {
+      ...options,
+      headers,
+    });
+
+    if (!response.ok) return null;
+    return await response.json().catch(() => null);
+  } catch (err) {
+    return null;
+  }
+}
+
+function initialsFrom(name) {
+  const parts = String(name || '')
+    .replace(/Dr\./gi, '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  const a = parts[0]?.[0] || 'P';
+  const b = parts[1]?.[0] || parts[0]?.[1] || 'R';
+  return (a + b).toUpperCase();
+}
+
+function mapPractitioner(pract) {
+  return {
+    id: pract.id,
+    initials: pract.name ? initialsFrom(pract.name) : 'PR',
+    name: pract.name || pract.username || 'Practitioner',
+    specialization: pract.specialization || pract.profession || 'General Medicine',
+    date: pract.registrationDate || pract.createdAt || 'Unknown',
+    status: pract.status || 'Pending',
+  };
+}
+
+function mapHospital(hosp) {
+  return {
+    id: hosp.id,
+    name: hosp.name || 'Hospital',
+    region: hosp.region || hosp.address || 'Unknown',
+    date: hosp.registrationDate || hosp.createdAt || 'Unknown',
+    status: hosp.status || 'Pending',
+  };
+}
+
+async function loadVerificationData() {
+  const [practitioners, hospitals] = await Promise.all([
+    backendFetch('/practitioners'),
+    backendFetch('/hospitals'),
+  ]);
+
+  if (Array.isArray(practitioners) && practitioners.length) {
+    practitionerData.splice(0, practitionerData.length, ...practitioners.map(mapPractitioner));
+  }
+
+  if (Array.isArray(hospitals) && hospitals.length) {
+    hospitalDataAll.splice(0, hospitalDataAll.length, ...hospitals.map(mapHospital));
+  }
+}
 
 function statusClass(status) {
   const s = status.toLowerCase();
@@ -269,13 +350,15 @@ function wireDetailsModal() {
   });
 }
 
-function init() {
+async function init() {
   wireTabs();
   wireSearch();
   wireLoadMore();
   wireDetailsModal();
   wireHospitalRowOpen();
   wirePractitionerRowOpen();
+
+  await loadVerificationData();
 
   renderPractitioners("");
   renderHospitals("");

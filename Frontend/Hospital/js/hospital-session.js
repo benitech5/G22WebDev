@@ -2,7 +2,13 @@
  * Hospital admin portal session (demo).
  */
 (function (global) {
-  var KEYS = { loggedIn: "hl_hospital_logged_in", adminName: "hl_hospital_admin_name" };
+  var KEYS = {
+    loggedIn: "hl_hospital_logged_in",
+    adminName: "hl_hospital_admin_name",
+    token: "hl_hospital_token",
+    profile: "hl_hospital_profile",
+    hospitalId: "hl_hospital_id",
+  };
 
   var PATHS = {
     login: "Login.html",
@@ -21,6 +27,30 @@
     }
   }
 
+  function getToken() {
+    try {
+      return localStorage.getItem(KEYS.token) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function getProfile() {
+    try {
+      return JSON.parse(localStorage.getItem(KEYS.profile) || "null") || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function getHospitalId() {
+    try {
+      return localStorage.getItem(KEYS.hospitalId) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
   function setLoggedIn(name) {
     try {
       localStorage.setItem(KEYS.loggedIn, "1");
@@ -32,6 +62,9 @@
     try {
       localStorage.removeItem(KEYS.loggedIn);
       localStorage.removeItem(KEYS.adminName);
+      localStorage.removeItem(KEYS.token);
+      localStorage.removeItem(KEYS.profile);
+      localStorage.removeItem(KEYS.hospitalId);
     } catch (e) {}
     window.location.href = PATHS.landing;
   }

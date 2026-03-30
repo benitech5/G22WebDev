@@ -3,6 +3,80 @@
     return;
   }
 
+  var BACKEND_API = (function () {
+    if (typeof window === 'undefined') return 'http://localhost:4000/api';
+    if (window.BACKEND_API) return window.BACKEND_API;
+    if (!window.location.hostname || window.location.protocol === 'file:') return 'http://localhost:4000/api';
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:4000/api';
+    }
+    return '/api';
+  })();
+
+  function getPractitionerToken() {
+    try {
+      return localStorage.getItem('hl_practitioner_token') || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function getPractitionerProfileId() {
+    try {
+      return localStorage.getItem('hl_practitioner_profile_id') || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  async function backendFetch(path, options = {}) {
+    try {
+      const token = getPractitionerToken();
+      const headers = {
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      };
+      if (token) headers.Authorization = `Bearer ${token}`;
+      const response = await fetch(`${BACKEND_API}${path}`, {
+        ...options,
+        headers,
+      });
+      if (!response.ok) return null;
+      return await response.json().catch(() => null);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  async function findNextShift(status) {
+    const profileId = getPractitionerProfileId();
+    if (!profileId) return null;
+    const shifts = await backendFetch(`/shifts?practitionerId=${profileId}&status=${status}`);
+    return Array.isArray(shifts) && shifts.length ? shifts[0] : null;
+  }
+
+  async function startShiftRecord() {
+    const profileId = getPractitionerProfileId();
+    if (!profileId) return null;
+    const shift = await findNextShift('Upcoming');
+    if (!shift) return null;
+    return await backendFetch(`/practitioner/${profileId}/shift/${shift.id}/start`, {
+      method: 'PATCH',
+      body: JSON.stringify({}),
+    });
+  }
+
+  async function endShiftRecord() {
+    const profileId = getPractitionerProfileId();
+    if (!profileId) return null;
+    const shift = await findNextShift('Active');
+    if (!shift) return null;
+    return await backendFetch(`/practitioner/${profileId}/shift/${shift.id}/end`, {
+      method: 'PATCH',
+      body: JSON.stringify({ hoursLogged: 8 }),
+    });
+  }
+
   var u = PRACTITIONER_SESSION.getDisplayUser();
   var nameEl = document.getElementById("sideName");
   var titleEl = document.getElementById("sideTitle");
@@ -58,13 +132,23 @@
   });
 
   document.getElementById("btnStartShift") &&
-    document.getElementById("btnStartShift").addEventListener("click", function () {
-      toast("Shift started (demo). Time logged.");
+    document.getElementById("btnStartShift").addEventListener("click", async function () {
+      const result = await startShiftRecord();
+      if (result) {
+        toast("Shift started.");
+      } else {
+        toast("Shift started (demo). Time logged.");
+      }
     });
 
   document.getElementById("btnEndShift") &&
-    document.getElementById("btnEndShift").addEventListener("click", function () {
-      toast("Shift ended (demo). Pending supervisor approval.");
+    document.getElementById("btnEndShift").addEventListener("click", async function () {
+      const result = await endShiftRecord();
+      if (result) {
+        toast("Shift ended.");
+      } else {
+        toast("Shift ended (demo). Time logged.");
+      }
     });
 
   document.querySelectorAll(".quick-card[data-href]").forEach(function (btn) {

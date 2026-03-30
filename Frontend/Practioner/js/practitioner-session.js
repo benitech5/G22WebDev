@@ -7,6 +7,9 @@
     loggedIn: "hl_practitioner_logged_in",
     username: "hl_practitioner_username",
     onboarding: "hl_onboarding_complete",
+    token: "hl_practitioner_token",
+    profile: "hl_practitioner_profile",
+    profileId: "hl_practitioner_profile_id",
   };
 
   var PATHS = {
@@ -23,6 +26,30 @@
       return localStorage.getItem(KEYS.loggedIn) === "1";
     } catch (e) {
       return false;
+    }
+  }
+
+  function getToken() {
+    try {
+      return localStorage.getItem(KEYS.token) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function getProfile() {
+    try {
+      return JSON.parse(localStorage.getItem(KEYS.profile) || "null") || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function getProfileId() {
+    try {
+      return localStorage.getItem(KEYS.profileId) || "";
+    } catch (e) {
+      return "";
     }
   }
 
@@ -44,6 +71,9 @@
       localStorage.removeItem(KEYS.loggedIn);
       localStorage.removeItem(KEYS.username);
       localStorage.removeItem(KEYS.onboarding);
+      localStorage.removeItem(KEYS.token);
+      localStorage.removeItem(KEYS.profile);
+      localStorage.removeItem(KEYS.profileId);
     } catch (e) {}
     window.location.href = PATHS.landing;
   }
